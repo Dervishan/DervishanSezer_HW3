@@ -45,6 +45,22 @@ namespace CetBookStore.Controllers
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
             return View();
         }
+        [HttpGet]
+        public async Task<IActionResult> Search(string searchWord)
+        {
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
+
+            IQueryable<Book> books = _context.Books.AsQueryable();
+
+            SearchViewModel searchModel = new SearchViewModel();
+            searchModel.SearchText = searchWord;
+
+            if (!String.IsNullOrWhiteSpace(searchModel.SearchText))
+            {
+                books = books.Where(b => b.Title.Contains(searchModel.SearchText));
+            }
+            return View(searchModel);
+        }
         [HttpPost]
         public async Task<IActionResult> Search(SearchViewModel searchModel)
         {
