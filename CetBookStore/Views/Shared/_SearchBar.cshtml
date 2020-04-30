@@ -1,12 +1,12 @@
-﻿@model CetBookStore.ViewModel.SearchViewModel
+﻿
 @{
     ViewData["Title"] = "Search";
 }
 
-<div class="col-md-4">
-    <form asp-action="Search">
+<div class="col-md-4" style="margin-top:20px;">
+    <form asp-controller="Home" asp-action="Search">
         <div class="form-group">
-            <input asp-for="SearchText" type="search" class="form-control" placeholder="Arama Metni"/>
+            <input name="searchWord" type="search" class="form-control" placeholder="Arama Metni"/>
         </div>
     </form>
 </div>

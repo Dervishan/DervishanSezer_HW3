@@ -40,12 +40,6 @@ namespace CetBookStore.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public async Task<IActionResult> Search()
-        {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
-            return View();
-        }
-        [HttpGet]
         public async Task<IActionResult> Search(string searchWord)
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
